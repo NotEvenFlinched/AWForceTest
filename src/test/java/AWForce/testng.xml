@@ -8,7 +8,6 @@
     <test name="ChromeTest">
 
         <classes>
-            <class name="AWForce.tests.Init"/>
             <class name="AWForce.tests.AWForceTest"/>
         </classes>
 

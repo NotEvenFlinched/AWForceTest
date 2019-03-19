@@ -18,15 +18,12 @@ public class AWForceTest {
     private static AWForceLoginPage loginPage;
     private static AWForceResetPasswordPage resetPasswordPage;
 
-    @BeforeClass
-    public void init() {
-        driver = Init.getDriver();
+    @BeforeMethod
+    @Parameters("browser")
+    public void init(String browser) throws Exception {
+        driver = Init.setup(browser);
         loginPage = new AWForceLoginPage(driver);
         resetPasswordPage = new AWForceResetPasswordPage(driver);
-    }
-
-    @BeforeMethod()
-    public void openLoginPage() {
         driver.get("https://accounts.us1.advisor.ws/user/login");
     }
 
@@ -109,5 +106,10 @@ public class AWForceTest {
         // log out
         driver.findElement(By.xpath("//i")).click();
         driver.findElement(By.xpath("//li[4]/a")).click();
+    }
+
+    @AfterMethod
+    public void tearDown () {
+        driver.quit();
     }
 }

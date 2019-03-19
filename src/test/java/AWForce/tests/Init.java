@@ -13,13 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class Init {
     private static WebDriver driver;
 
-    public static WebDriver getDriver() {
-        return driver;
-    }
-
-    @BeforeSuite
-    @Parameters("browser")
-    public void setup(String browser) throws Exception {
+    public static WebDriver setup(String browser) throws Exception {
         switch (browser.toLowerCase()) {
             case "firefox":
                 System.setProperty("webdriver.gecko.driver", "lib/geckodriver.exe");
@@ -39,10 +33,6 @@ public class Init {
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-    }
-
-    @AfterSuite
-    public static void tearDown() {
-        driver.quit();
+        return driver;
     }
 }
