@@ -3,11 +3,12 @@
 
 <suite name="TestSuite" thread-count="2" parallel="false">
 
+    <parameter name="browser" value="chrome"/>
+
     <test name="ChromeTest">
 
-        <parameter name="browser" value="chrome"/>
-
         <classes>
+            <class name="AWForce.tests.Init"/>
             <class name="AWForce.tests.AWForceTest"/>
         </classes>
 
