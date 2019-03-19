@@ -25,6 +25,21 @@ public class AWForceLoginPage {
     @FindBy(id = "edit-forgot")
     private WebElement resetPasswordButton;
 
+    @FindBy(id = "edit-openid-connect-client-google-login")
+    private WebElement logInWithGoogleButton;
+
+    @FindBy(xpath = "//strong")
+    private WebElement wrongUsernameOrEmailMessageElement;
+
+    @FindBy(xpath = "//li")
+    private WebElement passwordResetMessageElement;
+
+    @FindBy(xpath = "//button[contains(@class,'hideShowPassword-toggle')]")
+    private WebElement showEnteredPasswordButton;
+
+    @FindBy(id = "edit-create")
+    private WebElement createAccountButton;
+
     public void clickLoginButton() {
         loginButton.click();
     }
@@ -33,11 +48,39 @@ public class AWForceLoginPage {
         resetPasswordButton.click();
     }
 
+    public void clickLogInWithGoogleButton() {
+        logInWithGoogleButton.click();
+    }
+
+    public void clickCreateAccountButton() {
+        createAccountButton.click();
+    }
+
+    public boolean checkIsPasswordVisible() {
+        return passwordField.getAttribute("class").contains("hideShowPassword-shown");
+    }
+
+    public void showEnteredPassword() {
+        showEnteredPasswordButton.click();
+    }
+
     public void enterUsernameOrEmail(String text) {
         usernameField.sendKeys(text);
     }
 
-    public void enterPassword (String password) {
+    public void enterPassword(String password) {
         passwordField.sendKeys(password);
+    }
+
+    public String getUsernameFieldValidationMessage() {
+        return usernameField.getAttribute("validationMessage");
+    }
+
+    public String getWrongUsernameMessageElementText() {
+        return wrongUsernameOrEmailMessageElement.getAttribute("innerText");
+    }
+
+    public String getPasswordResetMessage() {
+        return passwordResetMessageElement.getAttribute("innerText");
     }
 }

@@ -19,11 +19,22 @@ public class AWForceResetPasswordPage {
     @FindBy(id = "edit-name")
     private WebElement usernameField;
 
+    @FindBy(xpath = "//strong")
+    private WebElement wrongUsernameMessageElement;
+
     public void clickSubmitButton() {
         submitButton.click();
     }
 
     public void enterUsernameOrEmail(String text) {
         usernameField.sendKeys(text);
+    }
+
+    public String getUsernameFieldValidationMessage() {
+        return usernameField.getAttribute("validationMessage");
+    }
+
+    public String getWrongUsernameMessageElementText() {
+        return wrongUsernameMessageElement.getAttribute("innerText");
     }
 }
